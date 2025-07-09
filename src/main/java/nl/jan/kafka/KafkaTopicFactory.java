@@ -18,10 +18,10 @@ public class KafkaTopicFactory {
         boolean topicCreated=false;
 
         try{
-            NewTopic newTopic=TopicBuilder.name(kafkaTopic).partitions(3)
+           /* NewTopic newTopic=TopicBuilder.name(kafkaTopic).partitions(3)
                     .compact()
                     .build();
-            this.kafkaAdmin.createOrModifyTopics(newTopic);
+            this.kafkaAdmin.createOrModifyTopics(newTopic);*/
             topicCreated=true;
         }catch(Exception e){
             logger.error("Failed to create topic "+kafkaTopic+" "+e);

@@ -1,5 +1,21 @@
 # janfication2
 
+TODO:
+Non coding; 
+- Database (h2)
+- Postman voor aanroepen
+- (Dockercompose -> Kafka)
+- Startup documentatie (Java Version, docker, Postman/Bruno, etc.)
+Coding:
+- Feature: Rudimentary first impl. of notificatie 
+  - API call voor aanmaken notificatie
+  - Notificatie naar topic
+  - Verwerking... (TBD)
+  - Uitsturen notificatie naar abonnement
+
+Default md below...
+_____
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
