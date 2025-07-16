@@ -147,6 +147,8 @@ Easily start your REST Web Services
 
 # DevNotes
 
+Good read on reactive & vert.x: https://quarkus.io/guides/quarkus-reactive-architecture
+
 ## Server stub generator
 - OpenAPI spec from: https://github.com/open-zaak/open-notificaties/blob/main/src/openapi.yaml
 - Installed latest (unreleased) quarkus openapi server generator: https://github.com/quarkiverse/quarkus-openapi-generator/tree/main (mvn install -DskipTests)
