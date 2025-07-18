@@ -12,7 +12,6 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import java.util.List;
-import java.util.concurrent.CompletionStage;
 import nl.jan.rest.beans.Kanaal;
 import nl.jan.rest.beans.PatchedKanaal;
 
@@ -35,7 +34,7 @@ public interface KanaalResource {
    */
   @GET
   @Produces("application/json")
-  CompletionStage<List<Kanaal>> kanaal_list(@QueryParam("naam") String naam);
+  List<Kanaal> kanaal_list(@QueryParam("naam") String naam);
 
   /**
    * <p>
@@ -52,7 +51,7 @@ public interface KanaalResource {
   @POST
   @Produces("application/json")
   @Consumes("application/json")
-  CompletionStage<Kanaal> kanaal_create(@HeaderParam("Content-Type") @NotNull String contentType, @NotNull Kanaal data);
+  Kanaal kanaal_create(@HeaderParam("Content-Type") @NotNull String contentType, @NotNull Kanaal data);
 
   /**
    * <p>
@@ -69,7 +68,7 @@ public interface KanaalResource {
   @Path("/{uuid}")
   @GET
   @Produces("application/json")
-  CompletionStage<Kanaal> kanaal_read(@PathParam("uuid") String uuid);
+  Kanaal kanaal_read(@PathParam("uuid") String uuid);
 
   /**
    * <p>
@@ -87,8 +86,8 @@ public interface KanaalResource {
   @PUT
   @Produces("application/json")
   @Consumes("application/json")
-  CompletionStage<Kanaal> kanaal_update(@HeaderParam("Content-Type") @NotNull String contentType,
-      @PathParam("uuid") String uuid, @NotNull Kanaal data);
+  Kanaal kanaal_update(@HeaderParam("Content-Type") @NotNull String contentType, @PathParam("uuid") String uuid,
+      @NotNull Kanaal data);
 
   /**
    * <p>
@@ -106,6 +105,6 @@ public interface KanaalResource {
   @PATCH
   @Produces("application/json")
   @Consumes("application/json")
-  CompletionStage<Kanaal> kanaal_partial_update(@HeaderParam("Content-Type") @NotNull String contentType,
-      @PathParam("uuid") String uuid, @NotNull PatchedKanaal data);
+  Kanaal kanaal_partial_update(@HeaderParam("Content-Type") @NotNull String contentType, @PathParam("uuid") String uuid,
+      @NotNull PatchedKanaal data);
 }

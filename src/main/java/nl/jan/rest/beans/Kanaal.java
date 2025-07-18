@@ -9,10 +9,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
-
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -24,8 +22,6 @@ import jakarta.persistence.Entity;
 @Generated("jsonschema2pojo")
 @Entity
 public class Kanaal extends PanacheEntity {
-
-
 
     /**
      * URL-referentie naar dit object. Dit is de unieke identificatie en locatie van dit object.

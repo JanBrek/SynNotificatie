@@ -12,7 +12,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import java.util.List;
-import java.util.concurrent.CompletionStage;
 import nl.jan.rest.beans.Abonnement;
 import nl.jan.rest.beans.PatchedAbonnement;
 
@@ -33,7 +32,7 @@ public interface AbonnementResource {
    */
   @GET
   @Produces("application/json")
-  CompletionStage<List<Abonnement>> abonnement_list();
+  List<Abonnement> abonnement_list();
 
   /**
    * <p>
@@ -48,8 +47,7 @@ public interface AbonnementResource {
   @POST
   @Produces("application/json")
   @Consumes("application/json")
-  CompletionStage<Abonnement> abonnement_create(@HeaderParam("Content-Type") @NotNull String contentType,
-      @NotNull Abonnement data);
+  Abonnement abonnement_create(@HeaderParam("Content-Type") @NotNull String contentType, @NotNull Abonnement data);
 
   /**
    * <p>
@@ -64,7 +62,7 @@ public interface AbonnementResource {
   @Path("/{uuid}")
   @GET
   @Produces("application/json")
-  CompletionStage<Abonnement> abonnement_read(@PathParam("uuid") String uuid);
+  Abonnement abonnement_read(@PathParam("uuid") String uuid);
 
   /**
    * <p>
@@ -80,8 +78,8 @@ public interface AbonnementResource {
   @PUT
   @Produces("application/json")
   @Consumes("application/json")
-  CompletionStage<Abonnement> abonnement_update(@HeaderParam("Content-Type") @NotNull String contentType,
-      @PathParam("uuid") String uuid, @NotNull Abonnement data);
+  Abonnement abonnement_update(@HeaderParam("Content-Type") @NotNull String contentType, @PathParam("uuid") String uuid,
+      @NotNull Abonnement data);
 
   /**
    * <p>
@@ -95,7 +93,7 @@ public interface AbonnementResource {
    */
   @Path("/{uuid}")
   @DELETE
-  CompletionStage<Void> abonnement_delete(@PathParam("uuid") String uuid);
+  void abonnement_delete(@PathParam("uuid") String uuid);
 
   /**
    * <p>
@@ -111,6 +109,6 @@ public interface AbonnementResource {
   @PATCH
   @Produces("application/json")
   @Consumes("application/json")
-  CompletionStage<Abonnement> abonnement_partial_update(@HeaderParam("Content-Type") @NotNull String contentType,
+  Abonnement abonnement_partial_update(@HeaderParam("Content-Type") @NotNull String contentType,
       @PathParam("uuid") String uuid, @NotNull PatchedAbonnement data);
 }

@@ -6,7 +6,6 @@ import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
-import java.util.concurrent.CompletionStage;
 import nl.jan.rest.beans.Message;
 
 /**
@@ -27,6 +26,5 @@ public interface NotificatiesResource {
   @POST
   @Produces("application/json")
   @Consumes("application/json")
-  CompletionStage<Message> notificaties_create(@HeaderParam("Content-Type") @NotNull String contentType,
-      @NotNull Message data);
+  Message notificaties_create(@HeaderParam("Content-Type") @NotNull String contentType, @NotNull Message data);
 }
