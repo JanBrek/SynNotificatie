@@ -1,10 +1,10 @@
-# janfication2
+# Synfication
 
 TODO:
 Non coding; 
-- Database (h2)
+- Database (h2) -> Done, Postgres
 - Postman voor aanroepen
-- (Dockercompose -> Kafka)
+- (Dockercompose -> Kafka) -> Automatisch
 - Startup documentatie (Java Version, docker, Postman/Bruno, etc.)
 Coding:
 - Feature: Rudimentary first impl. of notificatie 
@@ -12,6 +12,30 @@ Coding:
   - Notificatie naar topic
   - Verwerking... (TBD)
   - Uitsturen notificatie naar abonnement
+
+Hackaton:
+- Reactive?
+# DevNotes
+
+Good read on reactive & vert.x: https://quarkus.io/guides/quarkus-reactive-architecture
+
+## Server stub generator
+- OpenAPI spec from: https://github.com/open-zaak/open-notificaties/blob/main/src/openapi.yaml
+- Installed latest (unreleased) quarkus openapi server generator: https://github.com/quarkiverse/quarkus-openapi-generator/tree/main (mvn install -DskipTests)
+  - Now saved in project -Do this first time!!!!-:
+  ```
+  cd manualJar
+  mvn install:install-file -Dfile=".\quarkus-openapi-generator-server-3.0.0-SNAPSHOT.jar" -DpomFile=".\quarkus-openapi-generator-server-3.0.0-SNAPSHOT.pom"
+  mvn install:install-file -Dfile=".\quarkus-openapi-generator-server-deployment-3.0.0-SNAPSHOT.jar" -DpomFile=".\quarkus-openapi-generator-server-deployment-3.0.0-SNAPSHOT.pom"
+  mvn install:install-file -Dpackaging=pom -Dfile=".\quarkus-openapi-generator-server-parent-3.0.0-SNAPSHOT.pom" -DpomFile=".\quarkus-openapi-generator-server-parent-3.0.0-SNAPSHOT.pom"
+  mvn install:install-file -Dpackaging=pom -Dfile=".\quarkus-openapi-generator-parent-3.0.0-SNAPSHOT.pom" -DpomFile=".\quarkus-openapi-generator-parent-3.0.0-SNAPSHOT.pom"
+  ```
+- Follow docs: https://docs.quarkiverse.io/quarkus-openapi-generator/dev/server.html
+
+## Starting issues
+If: `Caused by: com.github.dockerjava.api.exception.InternalServerErrorException: Status 500: {"message":"failed to set up container networking: driver failed programming external connectivity on endpoint eager_haibt (d99ad5dfcc3c14ee029f257d3ea9a106d5f5fc4ff84c760bdcca96d1239077a7): failed to listen on TCP socket: address already in use"}`
+Update docker desktop...
+
 
 Default md below...
 _____
@@ -142,26 +166,3 @@ Easily start your REST Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
 
-
-
-
-# DevNotes
-
-Good read on reactive & vert.x: https://quarkus.io/guides/quarkus-reactive-architecture
-
-## Server stub generator
-- OpenAPI spec from: https://github.com/open-zaak/open-notificaties/blob/main/src/openapi.yaml
-- Installed latest (unreleased) quarkus openapi server generator: https://github.com/quarkiverse/quarkus-openapi-generator/tree/main (mvn install -DskipTests)
-   - Now saved in project -Do this first time!!!!-:
-  ```
-  cd manualJar
-  mvn install:install-file -Dfile=".\quarkus-openapi-generator-server-3.0.0-SNAPSHOT.jar" -DpomFile=".\quarkus-openapi-generator-server-3.0.0-SNAPSHOT.pom"
-  mvn install:install-file -Dfile=".\quarkus-openapi-generator-server-deployment-3.0.0-SNAPSHOT.jar" -DpomFile=".\quarkus-openapi-generator-server-deployment-3.0.0-SNAPSHOT.pom"
-  mvn install:install-file -Dpackaging=pom -Dfile=".\quarkus-openapi-generator-server-parent-3.0.0-SNAPSHOT.pom" -DpomFile=".\quarkus-openapi-generator-server-parent-3.0.0-SNAPSHOT.pom"
-  mvn install:install-file -Dpackaging=pom -Dfile=".\quarkus-openapi-generator-parent-3.0.0-SNAPSHOT.pom" -DpomFile=".\quarkus-openapi-generator-parent-3.0.0-SNAPSHOT.pom"
-  ```
-- Follow docs: https://docs.quarkiverse.io/quarkus-openapi-generator/dev/server.html
-
-## Starting issues
-If: `Caused by: com.github.dockerjava.api.exception.InternalServerErrorException: Status 500: {"message":"failed to set up container networking: driver failed programming external connectivity on endpoint eager_haibt (d99ad5dfcc3c14ee029f257d3ea9a106d5f5fc4ff84c760bdcca96d1239077a7): failed to listen on TCP socket: address already in use"}`
-Update docker desktop...
