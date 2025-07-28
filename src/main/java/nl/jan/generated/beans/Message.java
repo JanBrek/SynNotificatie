@@ -1,14 +1,12 @@
 
-package nl.jan.rest.beans;
+package nl.jan.generated.beans;
 
+import com.fasterxml.jackson.annotation.*;
+import nl.jan.generated.beans.Kenmerken;
+
+import javax.annotation.processing.Generated;
 import java.net.URI;
 import java.util.Date;
-import javax.annotation.processing.Generated;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({

@@ -2,10 +2,10 @@
 
 TODO:
 Non coding; 
-- Database (h2) -> Done, Postgres
 - Postman voor aanroepen
-- (Dockercompose -> Kafka) -> Automatisch
-- Startup documentatie (Java Version, docker, Postman/Bruno, etc.)
+- Startup documentatie & uitsturen (Java Version, docker, Postman/Bruno, etc.)
+- V Database (h2) -> Done, Postgres
+- V (Dockercompose -> Kafka) -> Automatisch
 Coding:
 - Feature: Rudimentary first impl. of notificatie 
   - API call voor aanmaken notificatie
@@ -15,9 +15,24 @@ Coding:
 
 Hackaton:
 - Reactive?
+- Admin UI?
+
+# Before you start
+
+Before checking this project out and running the code, make sure the following software is installed:
+- Java JDK 21 (Adoptium OpenJDK)
+- Docker Desktop (latest version), if you have installed this already make sure it's up-to-date
+- Postman/Bruno/Insomnia (or something else to make http requests)
+
 # DevNotes
 
 Good read on reactive & vert.x: https://quarkus.io/guides/quarkus-reactive-architecture
+
+## Lessons learned
+- Use `./mvnw quarkus:add-extension -Dextensions="quarkus-hibernate-orm-panache` & remove-extension
+- Dont have your git repo on onedrive ;)
+- quarkus:dev does not (mvn) clean!!
+
 
 ## Server stub generator
 - OpenAPI spec from: https://github.com/open-zaak/open-notificaties/blob/main/src/openapi.yaml
@@ -35,6 +50,28 @@ Good read on reactive & vert.x: https://quarkus.io/guides/quarkus-reactive-archi
 ## Starting issues
 If: `Caused by: com.github.dockerjava.api.exception.InternalServerErrorException: Status 500: {"message":"failed to set up container networking: driver failed programming external connectivity on endpoint eager_haibt (d99ad5dfcc3c14ee029f257d3ea9a106d5f5fc4ff84c760bdcca96d1239077a7): failed to listen on TCP socket: address already in use"}`
 Update docker desktop...
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Default md below...

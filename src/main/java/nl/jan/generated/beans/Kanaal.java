@@ -1,16 +1,21 @@
 
-package nl.jan.rest.beans;
+package nl.jan.generated.beans;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+import javax.annotation.processing.Generated;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -21,7 +26,12 @@ import jakarta.persistence.Entity;
 })
 @Generated("jsonschema2pojo")
 @Entity
-public class Kanaal extends PanacheEntity {
+public class Kanaal extends PanacheEntityBase {
+
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    private UUID id;
 
     /**
      * URL-referentie naar dit object. Dit is de unieke identificatie en locatie van dit object.
@@ -52,6 +62,10 @@ public class Kanaal extends PanacheEntity {
     @JsonProperty("filters")
     @JsonPropertyDescription("Lijst van mogelijke filter kenmerken van een KANAAL. Deze filter kenmerken kunnen worden gebruikt bij het aanmaken van een ABONNEMENT.")
     private List<String> filters = new ArrayList<String>();
+
+    public UUID getId() {return id;}
+
+    public void setId(UUID id) {this.id = id;}
 
     /**
      * URL-referentie naar dit object. Dit is de unieke identificatie en locatie van dit object.
@@ -127,4 +141,12 @@ public class Kanaal extends PanacheEntity {
         this.filters = filters;
     }
 
+ /*   *//**
+     * Updates only filled fields
+     * @param kanaal
+     *//*
+    public void partialupdate(Kanaal kanaal){
+
+        //kanaal.setUrl(this.url);
+    }*/
 }

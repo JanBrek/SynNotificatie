@@ -1,4 +1,4 @@
-package nl.jan.rest;
+package nl.jan.generated;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Consumes;
@@ -6,7 +6,7 @@ import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
-import nl.jan.rest.beans.Message;
+import nl.jan.generated.beans.Message;
 
 /**
  * A JAX-RS interface. An implementation of this interface must be provided.

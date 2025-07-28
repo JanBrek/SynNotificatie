@@ -1,4 +1,4 @@
-package nl.jan.rest;
+package nl.jan.generated;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Consumes;
@@ -12,8 +12,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import java.util.List;
-import nl.jan.rest.beans.Abonnement;
-import nl.jan.rest.beans.PatchedAbonnement;
+import nl.jan.generated.beans.Abonnement;
+import nl.jan.generated.beans.PatchedAbonnement;
 
 /**
  * A JAX-RS interface. An implementation of this interface must be provided.
