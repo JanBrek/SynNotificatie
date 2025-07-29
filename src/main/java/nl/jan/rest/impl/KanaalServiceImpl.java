@@ -5,9 +5,8 @@ import nl.jan.generated.KanaalResource;
 import nl.jan.generated.beans.Kanaal;
 import nl.jan.generated.beans.PatchedKanaal;
 
-import java.util.Arrays;
+import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class KanaalServiceImpl implements KanaalResource {
@@ -35,23 +34,36 @@ public class KanaalServiceImpl implements KanaalResource {
 
         Kanaal foundKanaal = Kanaal.findById(UUID.fromString(uuid));
 
-        assert foundKanaal != null;
+        if (foundKanaal != null) {
+            updateKanaal(data, foundKanaal);
+        }
 
-        System.out.println(data.getId());
-        data.persist();
-        return data;
+        return foundKanaal;
     }
 
     @Override
     public Kanaal kanaal_partial_update(String contentType, String uuid, PatchedKanaal data) {
         Kanaal foundKanaal = Kanaal.findById(UUID.fromString(uuid));
 
-        Optional.ofNullable(data.getNaam()).ifPresent((naam) -> foundKanaal.setNaam(data.getNaam()));
+        if (foundKanaal != null) {
+            updateKanaal(data, foundKanaal);
+        }
 
-        //Arrays.stream(foundKanaal.getClass().getDeclaredFields()).forEach((field) -> {Optional.ofNullable(field.g)})
+        return foundKanaal;
+    }
 
-        //Kanaal.update(data);
-
-        return null;
+    private <T> void updateKanaal(T newData, T existingKanaal) {
+        Field[] fields = existingKanaal.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                Object newValue = field.get(newData);
+                if (newValue != null) {
+                    field.set(existingKanaal, newValue);
+                }
+            } catch (IllegalAccessException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
