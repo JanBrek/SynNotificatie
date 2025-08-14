@@ -1,32 +1,34 @@
 package nl.jan.kafka;
 
-import io.smallrye.reactive.messaging.kafka.KafkaAdmin;
-import nl.jan.rest.impl.KanaalServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.jboss.logging.Logger;
 
+import java.util.Collections;
+import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+
+import static org.jboss.logging.Logger.Level.ERROR;
+
+@ApplicationScoped
 public class KafkaTopicFactory {
-    private static Logger logger = Logger.getLogger(KafkaTopicFactory.class);
+    private static final Logger logger = Logger.getLogger(KafkaTopicFactory.class);
 
-    private KafkaAdmin kafkaAdmin;
+    private static final String KAFKA_HOST = "localhost:9093";
 
-    /*public KafkaTopicFactory(KafkaAdmin kafkaAdmin){
-        this.kafkaAdmin=kafkaAdmin;
-    }*/
+    public boolean createTopic(String kafkaTopic) {
+        boolean isCreated = false;
+        Properties config = new Properties();
+        config.put("bootstrap.servers", KAFKA_HOST);
 
-    public boolean createTopic(String kafkaTopic){
-
-        boolean topicCreated=false;
-
-        try{
-           /* NewTopic newTopic=TopicBuilder.name(kafkaTopic).partitions(3)
-                    .compact()
-                    .build();
-            this.kafkaAdmin.createOrModifyTopics(newTopic);*/
-            topicCreated=true;
-        }catch(Exception e){
-            logger.error("Failed to create topic "+kafkaTopic+" "+e);
+        try (AdminClient admin = AdminClient.create(config)) {
+            NewTopic newTopic = new NewTopic(kafkaTopic, 1, (short) 1);
+            admin.createTopics(Collections.singleton(newTopic)).all().get();
+            isCreated = true;
+        } catch (ExecutionException | InterruptedException e) {
+            logger.log(ERROR, "Error occured creating a new topic. " + e.getMessage());
         }
-
-        return topicCreated;
+        return isCreated;
     }
 }
