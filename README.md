@@ -2,8 +2,8 @@
 
 TODO:
 Non coding; 
-- Postman voor aanroepen
-- Startup documentatie & uitsturen (Java Version, docker, Postman/Bruno, etc.)
+- V Postman voor aanroepen
+- V Startup documentatie & uitsturen (Java Version, docker, Postman/Bruno, etc.)
 - V Database (h2) -> Done, Postgres
 - V (Dockercompose -> Kafka) -> Automatisch
 Coding:
@@ -16,6 +16,18 @@ Coding:
 Hackaton:
 - Reactive?
 - Admin UI?
+- Stukje API
+
+Presentatie:
+- General welkom
+- Korte uitleg API
+- Alleen voor Java groep; setup (Quarkus & Kafka)
+  - Uitleg gegenereerde code structuur
+  - Welke componenten zitten er in (REST & kafka voorbeelden
+  - Waar kunnen we aan werken 
+    - Kanalen aanmaken (REST & KAFKA)
+    - Notificaties op kanaal plaatsen en weer uitlezen (KAFKA)
+    - Evt. Consumers maken
 
 # Before you start
 
