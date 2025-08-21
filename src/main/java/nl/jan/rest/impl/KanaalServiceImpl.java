@@ -1,10 +1,12 @@
 package nl.jan.rest.impl;
 
 import io.smallrye.mutiny.Multi;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import nl.jan.generated.KanaalResource;
 import nl.jan.generated.beans.Kanaal;
 import nl.jan.generated.beans.PatchedKanaal;
+import nl.jan.kafka.KafkaHelpers;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 
@@ -16,15 +18,11 @@ import java.util.UUID;
 
 public class KanaalServiceImpl implements KanaalResource {
 
-    @Channel("incoming-kanalen")
-    Emitter<Kanaal> kanaalEmitter;
-
-    @Channel("outgoing-kanalen")
-    Multi<Kanaal> kanalen;
+    @Inject
+    KafkaHelpers kh;
 
     @Override
     public List<Kanaal> kanaal_list(String naam) {
-        System.out.println(kanalen.collect().asList().await().atMost(Duration.of(5, ChronoUnit.SECONDS)));
         return Kanaal.listAll();
     }
 
@@ -32,7 +30,7 @@ public class KanaalServiceImpl implements KanaalResource {
     @Override
     public Kanaal kanaal_create(String contentType, Kanaal data) {
         data.persist();
-        kanaalEmitter.send(data);
+        kh.createTopic(data.getNaam());
         return data;
     }
 
@@ -44,9 +42,10 @@ public class KanaalServiceImpl implements KanaalResource {
     @Transactional
     @Override
     public Kanaal kanaal_update(String contentType, String uuid, Kanaal data) {
-
         Kanaal foundKanaal = Kanaal.findById(UUID.fromString(uuid));
 
+        // Updaten van kanaal naam als topic naam gaan we niet supporten
+        // TODO; Momenteel gedraagd deze zich als patch. Moet een volwaardige overschrijving worden.
         if (foundKanaal != null) {
             updateKanaal(data, foundKanaal);
         }
