@@ -1,18 +1,13 @@
 package nl.jan.rest.impl;
 
-import io.smallrye.mutiny.Multi;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import nl.jan.generated.KanaalResource;
 import nl.jan.generated.beans.Kanaal;
 import nl.jan.generated.beans.PatchedKanaal;
 import nl.jan.kafka.KafkaHelpers;
-import org.eclipse.microprofile.reactive.messaging.Channel;
-import org.eclipse.microprofile.reactive.messaging.Emitter;
 
 import java.lang.reflect.Field;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
