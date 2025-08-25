@@ -24,8 +24,6 @@ import java.util.concurrent.ExecutionException;
 public class KafkaTryout {
     private static final Logger log = LoggerFactory.getLogger(KafkaTryout.class);
 
-    // Probeer hier je kafka meuk
-
     @Inject
     AdminClient admin;
 

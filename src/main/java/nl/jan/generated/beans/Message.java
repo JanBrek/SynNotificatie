@@ -2,7 +2,6 @@
 package nl.jan.generated.beans;
 
 import com.fasterxml.jackson.annotation.*;
-import nl.jan.generated.beans.Kenmerken;
 
 import javax.annotation.processing.Generated;
 import java.net.URI;

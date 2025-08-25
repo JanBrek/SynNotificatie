@@ -38,16 +38,12 @@ public class KafkaHelpers {
     @Inject
     KafkaConsumer<String, Message> notificatieConsumer;
 
-    public AdminClient getGetAdminClient(){
-        return adminClient;
-    }
-
-    public CreateTopicsResult createTopic(String kafkaTopic) {
+    public void createTopic(String kafkaTopic) {
         NewTopic newTopic = new NewTopic(kafkaTopic, 1, (short) 1);
-        return adminClient.createTopics(Collections.singleton(newTopic));
+        adminClient.createTopics(Collections.singleton(newTopic));
     }
 
-    public Future<RecordMetadata> SendNotificatie(Message message) {
+    public Future<RecordMetadata> sendNotification(Message message) {
         return notificatieProducer.send(new ProducerRecord<>(message.getKanaal(), message));
     }
 

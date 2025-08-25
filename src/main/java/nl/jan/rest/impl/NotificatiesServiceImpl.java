@@ -17,7 +17,7 @@ public class NotificatiesServiceImpl implements NotificatiesResource {
     @Override
     public Message notificaties_create(String contentType, Message data) {
         try {
-            kh.SendNotificatie(data).get(10L, TimeUnit.SECONDS);
+            kh.sendNotification(data).get(10L, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             throw new RuntimeException(e);
         }
