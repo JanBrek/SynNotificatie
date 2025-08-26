@@ -1,11 +1,13 @@
 package nl.jan.rest.impl;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import nl.jan.generated.AbonnementResource;
 import nl.jan.generated.beans.Abonnement;
 import nl.jan.generated.beans.PatchedAbonnement;
 
 import java.util.List;
 
+@ApplicationScoped
 public class AbonnementServiceImpl implements AbonnementResource {
     @Override
     public List<Abonnement> abonnement_list() {
@@ -14,7 +16,7 @@ public class AbonnementServiceImpl implements AbonnementResource {
 
     @Override
     public Abonnement abonnement_create(String contentType, Abonnement data) {
-        // Must create consumer(s)?
+        data.persist();
         return null;
     }
 

@@ -5,11 +5,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import javax.annotation.processing.Generated;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -19,7 +24,12 @@ import java.util.List;
     "kanalen"
 })
 @Generated("jsonschema2pojo")
-public class Abonnement {
+@Entity
+public class Abonnement extends PanacheEntityBase {
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    private UUID id;
 
     /**
      * URL-referentie naar dit object. Dit is de unieke identificatie en locatie van dit object.
