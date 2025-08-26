@@ -9,6 +9,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import javax.annotation.processing.Generated;
 import java.net.URI;
@@ -63,6 +64,7 @@ public class Abonnement extends PanacheEntityBase {
      */
     @JsonProperty("kanalen")
     @JsonPropertyDescription("Een lijst van kanalen en filters waarop het ABONNEMENT wordt afgenomen.")
+    @OneToMany
     private List<FilterGroup> kanalen = new ArrayList<FilterGroup>();
 
     /**

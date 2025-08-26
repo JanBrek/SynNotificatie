@@ -40,8 +40,11 @@ public class KafkaHelpers {
         return notificatieProducer.send(new ProducerRecord<>(message.getKanaal(), message));
     }
 
+
     public KafkaConsumer<String, Message> getTopicConsumer(String topic) {
-        notificatieConsumer.subscribe(Collections.singletonList(topic));
+        synchronized(notificatieConsumer) {
+            notificatieConsumer.subscribe(Collections.singletonList(topic));
+        }
         return notificatieConsumer;
     }
 

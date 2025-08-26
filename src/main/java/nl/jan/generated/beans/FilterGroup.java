@@ -5,8 +5,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import javax.annotation.processing.Generated;
+import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -14,7 +19,12 @@ import javax.annotation.processing.Generated;
     "naam"
 })
 @Generated("jsonschema2pojo")
-public class FilterGroup {
+@Entity
+public class FilterGroup extends PanacheEntityBase {
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    private UUID id;
 
     /**
      * Map van kenmerken (sleutel/waarde) waarop notificaties gefilterd worden. Alleen notificaties waarvan de kenmerken voldoen aan het filter worden doorgestuurd naar de afnemer van het ABONNEMENT.

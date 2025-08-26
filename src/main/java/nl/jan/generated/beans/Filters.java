@@ -2,8 +2,10 @@
 package nl.jan.generated.beans;
 
 import com.fasterxml.jackson.annotation.*;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.annotation.processing.Generated;
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ import java.util.Map;
 
 })
 @Generated("jsonschema2pojo")
-public class Filters {
+public class Filters extends PanacheEntityBase implements Serializable {
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
