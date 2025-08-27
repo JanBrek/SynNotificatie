@@ -55,7 +55,7 @@ public class KafkaBeanCreator {
         return new KafkaProducer<>(properties);
     }
 
-    @Produces
+    //@Produces
     KafkaConsumer<String, Message> getNotificatieConsumer() {
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, config.get(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG));

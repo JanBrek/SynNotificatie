@@ -23,13 +23,16 @@ public class KafkaHelpers {
     private static final Logger log = LoggerFactory.getLogger(KafkaHelpers.class);
 
     @Inject
+    KafkaBeanCreator creator;
+
+    @Inject
     AdminClient adminClient;
 
     @Inject
     KafkaProducer<String, Message> notificatieProducer;
 
-    @Inject
-    KafkaConsumer<String, Message> notificatieConsumer;
+    /*@Inject
+    KafkaConsumer<String, Message> notificatieConsumer;*/
 
     public void createTopic(String kafkaTopic) {
         NewTopic newTopic = new NewTopic(kafkaTopic, 1, (short) 1);
@@ -42,10 +45,13 @@ public class KafkaHelpers {
 
 
     public KafkaConsumer<String, Message> getTopicConsumer(String topic) {
-        synchronized(notificatieConsumer) {
+        /*synchronized(notificatieConsumer) {
             notificatieConsumer.subscribe(Collections.singletonList(topic));
         }
-        return notificatieConsumer;
+        return notificatieConsumer;*/
+        KafkaConsumer<String, Message> consumer =  creator.getNotificatieConsumer();
+        consumer.subscribe(Collections.singletonList(topic));
+        return consumer;
     }
 
     public void LogFullMessageTopic(KafkaConsumer<String, Message> consumer) {

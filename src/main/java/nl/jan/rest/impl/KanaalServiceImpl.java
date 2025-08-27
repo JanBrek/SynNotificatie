@@ -34,6 +34,10 @@ public class KanaalServiceImpl implements KanaalResource {
 
     @Inject
     KafkaHelpers kh;
+
+    @Inject
+    AbonnementServiceImpl  abonnementService;
+
     HttpClient client = HttpClient.newHttpClient();
 
     ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
@@ -48,7 +52,9 @@ public class KanaalServiceImpl implements KanaalResource {
     public Kanaal kanaal_create(String contentType, Kanaal data) {
         data.persist();
         kh.createTopic(data.getNaam());
-        executor.submit(createNewKanaalConsumer(data.getNaam()));
+        Thread thread = new Thread(createNewKanaalConsumer(data.getNaam()));
+        thread.start();
+        //        executor.submit();
         return data;
     }
 
@@ -90,7 +96,7 @@ public class KanaalServiceImpl implements KanaalResource {
                         consumer.poll(Duration.ofMillis(100));
 
                 for (ConsumerRecord<String, Message> record : records) {
-                    List<Abonnement> abonnementen = Abonnement.listAll();
+                    List<Abonnement> abonnementen = abonnementService.abonnement_list();
                     abonnementen.forEach(abonnement -> {
                         for (FilterGroup fg : abonnement.getKanalen()) {
                             if (fg.getNaam().equals(kanaal)) {

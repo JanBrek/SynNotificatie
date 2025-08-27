@@ -67,6 +67,10 @@ public class Abonnement extends PanacheEntityBase {
     @OneToMany
     private List<FilterGroup> kanalen = new ArrayList<FilterGroup>();
 
+    public UUID getId() {return id;}
+
+    public void setId(UUID id) {this.id = id;}
+
     /**
      * URL-referentie naar dit object. Dit is de unieke identificatie en locatie van dit object.
      * 

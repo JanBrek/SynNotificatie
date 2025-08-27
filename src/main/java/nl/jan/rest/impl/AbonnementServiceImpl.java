@@ -2,6 +2,7 @@ package nl.jan.rest.impl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import nl.jan.generated.AbonnementResource;
 import nl.jan.generated.beans.Abonnement;
 import nl.jan.generated.beans.FilterGroup;
@@ -22,6 +23,7 @@ public class AbonnementServiceImpl implements AbonnementResource {
     KafkaHelpers kh;
 
     @Override
+    @Transactional
     public List<Abonnement> abonnement_list() {
         Abonnement.listAll();
         return List.of();
